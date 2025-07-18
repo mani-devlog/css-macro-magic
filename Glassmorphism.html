@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Glassmorphism Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #89f7fe, #66a6ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 2rem;
+    }
+
+    .backdrop-con {
+      background: #8a2387;
+      background: linear-gradient(320deg, #f27121, #e94057, #8a2387);
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .controls label {
+      display: flex;
+      flex-direction: column;
+      font-weight: bold;
+    }
+
+    .glass-box {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      padding: 2rem;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.2);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .glass-box::before {
+      content: 'GLASSMORPHISM';
+      position: absolute;
+      /* top: 10px; */
+      /* left: 10px; */
+      font-size: 5em;
+      font-weight: bold;
+      color: rgba(255, 255, 255, 0.6);
+      pointer-events: none;
+    }
+
+    .output {
+      margin-top: 2rem;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 600px;
+      font-family: monospace;
+    }
+  </style>
+</head>
+
+<body class="backdrop-con">
+    <h1>Glassmorphism CSS Generator</h1>
+
+    <div class="controls">
+      <label>
+        Blur
+        <input type="range" id="blur" min="0" max="30" value="10" />
+      </label>
+
+      <label>
+        Transparency
+        <input type="range" id="transparency" min="0" max="1" step="0.01" value="0.2" />
+      </label>
+
+      <label>
+        Shadow
+        <input type="range" id="shadow" min="0" max="50" value="8" />
+      </label>
+
+      <label>
+        Border Radius
+        <input type="range" id="radius" min="0" max="50" value="20" />
+      </label>
+
+      <label>
+        Color
+        <input type="color" id="color" value="#ffffff" />
+      </label>
+    </div>
+
+    <div class="glass-box" id="glassBox">
+      ✨ Frosty Magic Box ✨
+    </div>
+
+    <div class="output">
+      <pre id="cssOutput"></pre>
+    </div>
+  <script>
+    const blurInput = document.getElementById('blur');
+    const transparencyInput = document.getElementById('transparency');
+    const shadowInput = document.getElementById('shadow');
+    const radiusInput = document.getElementById('radius');
+    const colorInput = document.getElementById('color');
+    const glassBox = document.getElementById('glassBox');
+    const cssOutput = document.getElementById('cssOutput');
+
+    function hexToRgb(hex) {
+      const bigint = parseInt(hex.slice(1), 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+      return `${r}, ${g}, ${b}`;
+    }
+
+    function updateGlassStyle() {
+      const blur = blurInput.value;
+      const transparency = transparencyInput.value;
+      const shadow = shadowInput.value;
+      const radius = radiusInput.value;
+      const color = colorInput.value;
+      const rgb = hexToRgb(color);
+
+      glassBox.style.backdropFilter = `blur(${blur}px)`;
+      glassBox.style.webkitBackdropFilter = `blur(${blur}px)`;
+      glassBox.style.background = `rgba(${rgb}, ${transparency})`;
+      glassBox.style.boxShadow = `0 8px ${shadow}px 0 rgba(31, 38, 135, 0.37)`;
+      glassBox.style.borderRadius = `${radius}px`;
+
+      cssOutput.textContent = `
+.glass-box {
+  background: rgba(${rgb}, ${transparency});
+  box-shadow: 0 8px ${shadow}px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(${blur}px);
+  -webkit-backdrop-filter: blur(${blur}px);
+  border-radius: ${radius}px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}`;
+    }
+
+    blurInput.addEventListener('input', updateGlassStyle);
+    transparencyInput.addEventListener('input', updateGlassStyle);
+    shadowInput.addEventListener('input', updateGlassStyle);
+    radiusInput.addEventListener('input', updateGlassStyle);
+    colorInput.addEventListener('input', updateGlassStyle);
+
+    updateGlassStyle();
+  </script>
+</body>
+
+</html>

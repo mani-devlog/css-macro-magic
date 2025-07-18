@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CSS Micro Magic #5 – Custom Scrollbar</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .scroll-container {
+      width: 400px;
+      height: 500px;
+      overflow-y: scroll;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      padding: 0;
+    }
+
+    .title {
+      position: sticky;
+      top: 0;
+      background: #fff;
+      padding: 1rem;
+      margin: 0;
+      border-bottom: 1px solid #eee;
+      font-size: 1.1rem;
+      z-index: 1;
+    }
+
+    .scroll-container p {
+      padding: 0.75rem 1rem;
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    /* Custom scrollbar styles (WebKit only) */
+    .scroll-container::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .scroll-container::-webkit-scrollbar-thumb {
+      background-color: rgba(170, 12, 12, 0.664);
+      border-radius: 10px;
+    }
+
+    .scroll-container::-webkit-scrollbar-thumb:hover {
+      background: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="scroll-container">
+    <h2 class="title">CSS Micro Magic #5 – Custom Scrollbar</h2>
+    <p>This is a scrollable container with a custom styled scrollbar.</p>
+    <div class="content">
+      <p>Scroll me ✨</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <p>More content here...</p>
+      <p>Even more content...</p>
+      <p>Yep, keep scrolling...</p>
+      <p>Almost there...</p>
+      <p>CSS magic is everywhere 💫</p>
+      <p>
+        Donec posuere commodo eros a congue. Vivamus eget laoreet dui. Proin interdum sed metus non vulputate.
+        Ut tempor convallis lorem eget faucibus.
+      </p>
+      <p>
+        Cras quam eros, tempus eu lacus sed, efficitur suscipit leo. In eget nisi vitae justo semper facilisis sed luctus lectus.
+      </p>
+      <p>
+        Etiam efficitur blandit odio, et auctor lorem vehicula id. Ut hendrerit convallis sem, a vehicula dolor egestas nec.
+      </p>
+      <p>Fusce ac tortor ullamcorper, scelerisque felis eu, dignissim sem.</p>
+      <p>Integer iaculis ornare est id laoreet.</p>
+      <p>Scroll bonus! 🎁</p>
+      <p>Section A – Styling ideas with CSS</p>
+      <p>Section B – Advanced layout tips</p>
+      <p>Section C – Animating with keyframes</p>
+      <p>Section D – Responsive magic with clamp()</p>
+      <p>Section E – Accessibility + UX wins</p>
+      <p>
+        That’s a wrap! Hope this trick adds polish to your UI.  
+        Don't underestimate the power of small touches 🌟
+      </p>
+    </div>
+  </div>
+</body>
+</html>
